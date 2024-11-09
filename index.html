@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="icon" href="icons/iwatch_104896.ico">
+    <title>Pulse</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          background-color: #f3f4f7;
+        }
+        .banner {
+          background-color: #b22222;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+          position: relative;
+          width: 100%;
+          max-width: 1000px;
+          margin: 50px auto;
+          border-radius: 10px;
+          overflow: hidden;
+          height: 200px;
+        }
+        .banner h1 {
+          font-size: 2em;
+          margin: 0;
+        }
+        .banner p {
+          font-size: 1.2em;
+          margin: 5px 0 20px;
+        }
+        .countdown {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin-top: 10px;
+        }
+        .countdown div {
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          border-radius: 10px;
+          width: 90px;
+          text-align: center;
+        }
+        .countdown div span {
+          display: block;
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+        .countdown div label {
+          font-size: 0.8em;
+          text-transform: uppercase;
+        }
+        .snowflake {
+          position: absolute;
+          top: -50px;
+          color: #fff;
+          font-size: 1em;
+          opacity: 0.8;
+          animation: fall linear infinite;
+        }
+        @keyframes fall {
+          0% { transform: translateY(-50px); opacity: 1; }
+          100% { transform: translateY(250px); opacity: 0; }
+        }
+        #thankYouModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-content h3 {
+      color: #d9534f;
+    }
+
+    .modal-content p {
+      color: #555;
+      margin-top: 10px;
+    }
+      </style>
+</head>
+
+<body>
+    <section id="up" class="promo">
+        <div class="container">
+            <header class="header"><a href="#" class="header__logo"><img src="icons/logo.png" alt="logo"></a>
+                <div class="header__official">Офіційний представник <span>Garmin, Polar, Suunto</span></div>
+                <div class="header__contacts"><a href="tel:+380978445489" class="header__phone">099 999-99-99</a>
+                    <button data-modal="consultation" class="button">Замовити дзвінок</button></div>
+            </header>
+            <div class="promo__wrapper">
+                <h1 class="promo__header">Підбір Пульсометра</h1>
+                <h2 class="promo__subheader">З врахуванням вашого рівня підготовки</h2>
+                <div class="promo__icons">
+                    <div class="promo__icon"><img src="icons/firScr/timer.png" alt="timer"> Час підбору: 10хв</div>
+                    <div class="promo__icon"><img src="icons/firScr/app.png" alt="app"> Безкоштовна доставка</div>
+                    <div class="promo__icon"><img src="icons/firScr/messages.png" alt="messages"> Відповімо на всі
+                        питання</div>
+                </div><button data-modal="consultation" class="button button_main">Замовити консультацію</button>
+                <p class="promo__link">або <a href="#catalog">Перейти в каталог</a></p>
+            </div>
+        </div>
+    </section>
+    <section class="advantages">
+        <div class="container">
+            <h2 class="subtitle">Наші переваги</h2>
+            <div class="advantages__wrapper">
+                <div class="advantages__item"><img id="trophy" src="icons/advantages/cup.png" alt="cup">
+                    <h3>Нові висоти</h3>
+                    <p class="advantages__text">Досягайте нових висот у тренуваннях з годинником для бігу, що відстежує ваші показники в реальному часі.</p>
+                </div>
+                <div class="advantages__item"><img src="icons/advantages/heart.png" class="advantages__icon"
+                        alt="heart">
+                    <h3>Дбаємо про здоров'я</h3>
+                    <p class="advantages__text">Ми працюємо для того, щоб Ваші заняття спортом йшли на користь Вашому
+                        здоров'ю та були на радість Вам та Вашим близьким!</p>
+                </div>
+                <div class="advantages__item"><img id = "shoe"src="icons/advantages/shoe.png" alt="shoe">
+                    <h3>Біжимо вчасно</h3>
+                    <p class="advantages__text">Не пропускаючи жодної миті — ваш надійний пульсометр завжди поруч, щоб кожен тренувальний крок був на користь здоров'ю!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="advice">
+        <div class="container">
+            <h2 class="subtitle subtitle_left">Отримайте безкоштовну консультацію<br>щодо підбору пульсометра</h2>
+            <p class="advice__text">Просто заповніть форму заявки<br>і ми передзвонимо вам протягом 10 хвилин</p>
+            <form id="consultation-form" action="#" class="feed-form feed-form_adaptive"><input type="text"
+                    placeholder="Ваше ім'я" name="name"> <input placeholder="Ваш телефон" name="phone"> <input
+                    type="email" placeholder="Ваш e-mail" name="email"> <button type="submit"
+                    class="button button_submit">Замовити консультацію</button></form>
+        </div>
+    </section>
+    <div class="carousel">
+        <div class="container">
+            <div class="carousel__inner">
+                <div><img src="img/carrousel/Slide1.jpg" alt="slide 1"></div>
+                <div><img src="img/carrousel/Slide2.jpg" alt="slide 2"></div>
+                <div><img src="img/carrousel/Slide3.jpg" alt="slide 3"></div>
+            </div><button type="button" class="prev"><img src="icons/left.png" alt="left arrow"></button> <button
+                type="button" class="next"><img src="icons/right.png" alt="right arrow"></button>
+        </div>
+    </div>
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2 class="subtitle">Каталог пульсометрів</h2>
+            <div class="banner">
+                <h1>Знижки на пульсомери до Дня святого Миколая!</h1>
+                <p>Скористайтеся шансом святкового зниження цін.</p>
+                <div class="countdown" id="countdown">
+                  <div>
+                    <span id="days">00</span>
+                    <label>дні</label>
+                  </div>
+                  <div>
+                    <span id="hours">00</span>
+                    <label>години</label>
+                  </div>
+                  <div>
+                    <span id="minutes">00</span>
+                    <label>хвилини</label>
+                  </div>
+                  <div>
+                    <span id="seconds">00</span>
+                    <label>секунди</label>
+                  </div>
+                </div>
+                <!-- Сніжинки -->
+                <div id="snowflakes"></div>
+              </div>
+            <ul class="catalog__tabs">
+                <li class="catalog__tab catalog__tab_active">
+                    <div>Для фітнеса</div>
+                </li>
+                <li class="catalog__tab">
+                    <div>Для бігу</div>
+                </li>
+                <li class="catalog__tab">
+                    <div>Для тріатлона</div>
+                </li>
+            </ul>
+            <div class="catalog__content catalog__content_active">
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/photo.jpg"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Polar FT1</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви почуєте звукове сповіщення про підвищення інтенсивності тренування;</li>
+                                <li>Ви побачите детальний графік активності протягом дня;</li>
+                                <li>Також Ви отримаєте інформацію про середній пульс під час тренування;</li>
+                                <li>Ви зможете переглядати звіти про тренування за тиждень.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">4 750 грн</p>
+                            <p class="catalog-item__price">3 499 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active">
+                            <img src="img/godinnik-pulsometr-onrhythm-500-dlya-bigu-chervonij.jpg" alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Suunto M2</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі</p>
+                            <a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви будете отримувати нагадування про необхідність зробити руханку;</li>
+                                <li>и побачите інтерактивну діаграму вашої щоденної активності;</li>
+                                <li>Також Ви дізнаєтеся про кількість спалених калорій під час ходьби;</li>
+                                <li>Ви зможете отримати доступ до історії тренувань за місяць.</li>
+                            </ul>
+                            <a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">6 599 грн</p>
+                            <p class="catalog-item__price">5 999 грн</p>
+                        </div>
+                        <button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+                
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/garmin-forerunner-165-music-black-slate-gray-smart-godinnik-dlya-bigu.jpg"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Samsung FT4</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви отримаєте звукове сповіщення про досягнення цільового кроку;</li>
+                                <li>Ви побачите індикатор, що показує ваш прогрес у реальному часі;</li>
+                                <li>Також Ви дізнаєтеся про загальний час, проведений у тренувальних зонах;</li>
+                                <li>Ви зможете отримувати підказки для покращення результатів.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">7 250 грн</p>
+                            <p class="catalog-item__price">5 899 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/12.jpg"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Apple plus</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви почуєте звукове сповіщення про потрібний пульс під час тренувань;</li>
+                                <li>Ви побачите інформативний графічний індикатор цільових тренувальних зон пульсу;</li>
+                                <li>Також Ви побачите інформацію про витрати калорій за тренування;</li>
+                                <li>Ви зможете переглянути дані з 10 тренувань.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">4 699 грн</p>
+                            <p class="catalog-item__price">3 799 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/Feeltime CASIO GBD-200-2ER Dial.png"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр e-Shock</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви почуєте сповіщення про необхідність відпочинку під час тренування;</li>
+                                <li>Ви побачите графічний аналіз свого сну та рекомендації;</li>
+                                <li>Також Ви отримаєте дані про рівень кисню у крові;</li>
+                                <li>Ви зможете порівнювати свої результати за різні періоди.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">12 199 грн</p>
+                            <p class="catalog-item__price">9 999 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/638a9cbb-977e-4100-a54f-496db0df69b7.webp"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Xiaomi</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви будете отримувати звукове сповіщення про збільшення рівня стресу;</li>
+                                <li>Ви побачите інформацію про динаміку вашої активності за день;</li>
+                                <li>Також Ви отримаєте детальну статистику за спаленими калоріями;</li>
+                                <li>Ви зможете відслідковувати свої досягнення у вигляді графіків.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">9 499 грн</p>
+                            <p class="catalog-item__price">8 199 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+            </div>
+            <div class="catalog__content">
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/products_11185_1_b.jpg"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Polar</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви почуєте сигнал про початок та завершення тренувальної сесії;</li>
+                                <li>Ви побачите на екрані інформацію про поточний пульс;</li>
+                                <li>Також Ви дізнаєтеся про свій найкращий результат за тиждень;</li>
+                                <li>Ви зможете зберігати дані про ваші тренування у хмарі.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">5 150 грн</p>
+                            <p class="catalog-item__price">4 299 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+            </div>
+            <div class="catalog__content">
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/000019637_545_545.avif"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Samsung max</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви будете отримувати сповіщення про зміну інтенсивності вправ;</li>
+                                <li>Ви побачите детальний графік витрат енергії під час тренувань;</li>
+                                <li>Також Ви отримаєте інформацію про рівень гідратації організму;</li>
+                                <li>Ви зможете планувати свої тренування на наступний місяць.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">7 999 грн</p>
+                            <p class="catalog-item__price">5 899 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <div class="catalog-item__wrapper">
+                        <div class="catalog-item__content catalog-item__content_active"><img src="img/311416920.webp"
+                                alt="watch" class="catalog-item__img">
+                            <div class="catalog-item__subtitle">Пульсометр Xiaomi mini</div>
+                            <p class="catalog-item__text">Для перших кроків у тренуваннях, заснованих на серцевому ритмі
+                            </p><a href="#" class="catalog-item__link">Детальніше</a>
+                        </div>
+                        <div class="catalog-item__list">
+                            <ul>
+                                <li>Ви почуєте сповіщення про перехід на наступний етап тренування;</li>
+                                <li>Ви побачите графічний індикатор кількості пройдених кроків;</li>
+                                <li>Також Ви отримаєте аналіз вашої фізичної підготовки;</li>
+                                <li>Ви зможете синхронізувати дані з іншими пристроями.</li>
+                            </ul><a href="" class="catalog-item__back">Назад</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="catalog-item__footer">
+                        <div class="catalog-item__prices">
+                            <p class="catalog-item__old-price">6 499 грн</p>
+                            <p class="catalog-item__price">4 999 грн</p>
+                        </div><button class="button button_mini">Купити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="feedback">
+        <div class="container">
+            <h2 class="subtitle">Відгуки клієнтів</h2>
+            <div class="feedback__item animate__fadeInUp wow" data-wow-duration="2s" data-wow-delay="1s"><img
+                    src="img/feedback/photo_1.jpg" alt="avatar1" class="feedback__img">
+                <div class="feedback__comment">
+                    <p class="feedback__name">Ірина Іванченко</p>
+                    <p class="feedback__count">2 напівмарафони</p>
+                    <p class="feedback__text">Не знала, що собі купити – звернулася до хлопців із RunSmart – підібрали
+                        пульсометр, який підійшов саме під мої цілі та фінансові можливості. Через деякий час вирішила
+                        оновити гаджет – не роздумуючи звернулася туди ж.<br><br>Нові цілі – новий гаджет!<br><br>Дякую,
+                        RunSmart!</p>
+                </div>
+            </div>
+            <div class="feedback__item animate__fadeInUp wow" data-wow-duration="2s" data-wow-delay="1s"><img
+                    src="img/feedback/photo_2.jpg" alt="avatar2" class="feedback__img">
+                <div class="feedback__comment">
+                    <p class="feedback__name">Іван Сьомочкін</p>
+                    <p class="feedback__count">1 напівмарафон</p>
+                    <p class="feedback__text">Крута штука-пульсометр. Зазвичай без них бігав. Виявляється, тільки гірше
+                        собі робив. Купив пульсометр, ще подарунок отримав тренування. Зі мною разом провели перше
+                        тренування, навчили користуватися новим гаджетом. Також пояснили основи анатомії, склали план
+                        тренувань на місяць уперед.<br><br>З ними підготувався до свого першого півмарафону! Дякую!!!
+                    </p>
+                </div>
+            </div>
+            <div class="feedback__item animate__fadeInUp wow" data-wow-duration="2s" data-wow-delay="1s"><img
+                    src="img/feedback/photo_3.jpg" alt="avatar3" class="feedback__img">
+                <div class="feedback__comment">
+                    <p class="feedback__name">Юлія Дашкіна</p>
+                    <p class="feedback__count">2 напівмарафони</p>
+                    <p class="feedback__text">Довго було почати бігати, т.к. раніше кілька разів починала, але ставало
+                        важко і я кидала. Від друзів почула про RunSmart і про біг із контролем пульсу і вирішила
+                        спробувати.<br><br>Подзвонила, хлопці поцікавилися моїми цілями та підібрали дуже цікавий
+                        варіант зі знижкою! Тепер бігаю і насолоджуюся бігом! Пробігла вже 2 півмарафони і кілька
+                        коротших забігів і не має наміру зупинятися!<br><br>Дякую!!!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.8831207511175!2d24.012489300000002!3d49.82586189999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae787c35c064b%3A0x96cfd4005000b184!2z0JPRg9GA0YLQvtC20LjRgtC-0Log4oSWMTEsINCy0YPQu9C40YbRjyDQm9GD0LrQsNGI0LAsIDUsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgNzkwMDA!5e0!3m2!1suk!2sua!4v1730839936751!5m2!1suk!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="footer__info">
+            <address class="footer__place">Львів, вул. Лукаша, 5</address><a href="tel:+380999999999"
+                class="footer__phone">(099) 999-99-99</a>
+            <div class="footer__icons"><a href="https://www.facebook.com/profile.php?id=100087430546011&locale=uk_UA"
+                    target="_blank" class="footer__item"><span class="icon-facebook"></span></a> <a
+                    href="https://www.instagram.com/bodia_18_/" target="_blank" class="footer__item"><span
+                        class="icon-instagram"></span></a> <a href="https://www.pinterest.com/danilchukbohdan/"
+                    target="_blank" class="footer__item"><span class="icon-pinterest2"></span></a></div>
+        </div>
+    </footer>
+    <div class="overlay">
+        <div class="modal" id="consultation">
+            <div class="modal__close">&times;</div>
+            <div class="modal__subtitle">Просто заповніть форму заявки</div>
+            <div class="modal__descr">і ми передзвонимо вам протягом 10 хвилин</div>
+            <form action="#" class="feed-form feed-form_m25"><input type="text" placeholder="Ваше ім'я" name="name">
+                <input placeholder="Ваш телефон" name="phone"> <input type="email" placeholder="Ваш e-mail"
+                    name="email"> <button type="submit" class="button button_submit">Замовити консультацію</button>
+            </form>
+        </div>
+        
+        <div class="modal" id="order">
+            <div class="modal__close" onclick="closeModal('#order')">&times;</div>
+            <div class="modal__subtitle">Ваше замовлення:</div>
+            <div class="modal__descr">Пульсометр Polar FT1</div>
+            <form id="orderForm" class="feed-form feed-form_m25">
+                <input type="text" placeholder="Ваше ім'я" name="name" required>
+                <input type="tel" placeholder="Ваш телефон" name="phone" required>
+                <input type="email" placeholder="Ваш e-mail" name="email" required>
+                <button type="submit" class="button button_submit">Купити</button>
+            </form>
+        </div>
+    </div><a href="#up" class="pageup"><img src="icons/pageup.svg" alt="up"></a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Запобігає перезавантаженню сторінки
+            openModal('#thankYouModal');
+        });
+        
+        function openModal(modalId) {
+            document.querySelector(modalId).classList.add('active');
+        }
+        
+        function closeModal(modalId) {
+            document.querySelector(modalId).classList.remove('active');
+        }
+        </script>
+    <script>
+        gsap.to("#trophy", {
+        duration: 1, // Тривалість більш плавна
+        opacity: 1,
+        scale: 1.05,
+        rotation: 20, // Легке коливання
+        yoyo: true, // Плавне повернення до початкового стану
+        repeat: -1, // Безкінечний цикл
+        ease: "sine.inOut" // Плавне прискорення і сповільнення
+    });
+    </script>
+    
+    <script>
+      gsap.to("#shoe", {
+        duration: 0.5,       // Тривалість одного циклу
+        x: 10,               // Рух вперед на 10 пікселів
+        y: -5,               // Легкий підйом, щоб імітувати крок
+        rotation: -5,        // Легкий нахил для реалістичності
+        yoyo: true,          // Плавне повернення назад
+        repeat: -1,          // Безкінечний цикл
+        ease: "sine.inOut"   // Плавний перехід для природного руху
+      });
+    </script>
+     <script>
+        // Show modal on button click
+        document.querySelectorAll('[data-modal="thanks"]').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                document.getElementById('thanks').classList.add('modal_show');
+            });
+        });
+
+        // Close modal when clicking on close button
+        document.querySelectorAll('.modal__close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('modal_show');
+                });
+            });
+        });
+    </script>
+    <script>
+        // Таймер
+        const countdown = () => {
+          const targetDate = new Date("December 19, 2024 00:00:00").getTime();
+          const now = new Date().getTime();
+          const difference = targetDate - now;
+    
+          if (difference > 0) {
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+          } else {
+            document.querySelector('.banner p').textContent = "Знижки завершено!";
+          }
+        };
+    
+        setInterval(countdown, 1000);
+    
+        // Функція для генерації сніжинок
+        function createSnowflakes() {
+          const snowflake = document.createElement("div");
+          snowflake.classList.add("snowflake");
+          snowflake.style.left = Math.random() * 100 + "vw";
+          snowflake.style.fontSize = Math.random() * 60 + 10 + "px";
+          snowflake.textContent = "❄️";
+          snowflake.style.animationDuration = Math.random() * 3 + 3 + "s";
+          document.getElementById("snowflakes").appendChild(snowflake);
+    
+          setTimeout(() => {
+            snowflake.remove();
+          }, 5000);
+        }
+    
+        // Збільшення кількості сніжинок
+        setInterval(createSnowflakes, 100);
+      </script>
+    
+    
+</body>
+
+</html>
